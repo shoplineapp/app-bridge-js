@@ -7,8 +7,8 @@ AppBridge lives in an iframe. It provides interface to trigger request to EC Adm
 import { AppBridge } from 'admin-app-extension';
 
 const clientId = 'developer app client id';
-
-const appBridge = await AppBridge.init(clientId);
+const authUrl = 'https://developer.com/auth'
+const appBridge = await AppBridge.init({clientId, authUrl});
 ```
 
 ### API References
@@ -45,7 +45,7 @@ appBridge.redirect('https://shoplineapp.com')
 ```
 
 ---
-> appBridge.oauth(`callback_url`, `scopes`)
+> appBridge.oauth()
 
 - execute the oauth flow to obtain access token 
 

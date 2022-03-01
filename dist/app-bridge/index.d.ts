@@ -9,6 +9,9 @@ declare interface AppBridgeClient {
     routeChange(path: string, querystring?: string): void;
 }
 export declare const AppBridge: {
-    init: (clientId: string) => Promise<AppBridgeClient>;
+    init: (options: {
+        clientId: string;
+        authUrl: string;
+    }) => Promise<AppBridgeClient>;
 };
 export {};

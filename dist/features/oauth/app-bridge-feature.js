@@ -3,8 +3,7 @@ export var oauth = {
     name: 'oauth',
     handler: function (handshake, params) {
         var data = {
-            redirectUrl: params.redirectUrl,
-            scope: params.scope
+            authUrl: params.authUrl
         };
         handshake.toParent(Events.Oauth, data);
     }

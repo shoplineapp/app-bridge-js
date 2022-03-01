@@ -44,12 +44,12 @@ import { ChildHandshake } from './child-handshake';
 import { intercom as intercomFeature } from '../features/intercom/app-bridge-feature';
 import { getCurrentUrl as getCurrentUrlFeature } from '../features/get-current-url/app-bridge-feature';
 import { routeChange as routeChangeFeature } from '../features/route-change/app-bridge-feature';
-var init = function (clientId) { return __awaiter(void 0, void 0, void 0, function () {
+var init = function (options) { return __awaiter(void 0, void 0, void 0, function () {
     var handshake;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                handshake = new ChildHandshake(clientId);
+                handshake = new ChildHandshake(options.clientId);
                 handshake.addFeature(languageChangedFeature);
                 handshake.addFeature(getSessionTokenFeature);
                 handshake.addFeature(redirectFeature);
@@ -75,8 +75,8 @@ var init = function (clientId) { return __awaiter(void 0, void 0, void 0, functi
                         redirect: function (url) {
                             handshake.handle(redirectFeature.name, { url: url });
                         },
-                        oauth: function (redirectUrl, scope) {
-                            handshake.handle(oauthFeature.name, { redirectUrl: redirectUrl, scope: scope });
+                        oauth: function () {
+                            handshake.handle(oauthFeature.name, { authUrl: options.authUrl });
                         },
                         getLanguage: function () { return __awaiter(void 0, void 0, void 0, function () {
                             return __generator(this, function (_a) {
