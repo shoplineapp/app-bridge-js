@@ -1,6 +1,6 @@
 {
   "name": "app-bridge-js",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "App bridge",
   "main": "dist/index.js",
   "repository": "git@github.com:shoplineapp/app-bridge-js.git",
