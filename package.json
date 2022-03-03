@@ -1,5 +1,5 @@
 {
-  "name": "app-bridge-js",
+  "name": "@shopline/app-bridge-js",
   "version": "1.0.0",
   "description": "App bridge",
   "main": "dist/index.js",
