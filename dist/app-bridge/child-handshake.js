@@ -92,7 +92,9 @@ var ChildHandshake = /** @class */ (function () {
         return feature.handler(this, params);
     };
     ChildHandshake.prototype.getEventId = function () {
-        return new Date().getTime().toString();
+        var rand = Math.random().toString(16).slice(5);
+        var ts = new Date().getTime().toString();
+        return "".concat(rand, "-").concat(ts);
     };
     /**
      * send data to AdminSDK (one way trigger)

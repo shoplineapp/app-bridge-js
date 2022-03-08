@@ -1,22 +1,29 @@
 import jwt_decode from 'jwt-decode';
 import { CallbackEvents } from '../../constants/callback-events';
 import { Events } from '../../constants/events';
-var sessionToken = null;
-var isExpiring = function (token) {
-    var decoded = jwt_decode(token);
+var sessionTokenInfo = null;
+var isExpiring = function (tokenInfo) {
+    var payload = tokenInfo.payload;
     var now = new Date().getTime() / 1000;
-    return decoded.exp - now < 10;
+    return payload.exp - now < 10;
+};
+var decodeToken = function (token) {
+    return {
+        payload: jwt_decode(token),
+        token: token
+    };
 };
 export var getSessionToken = {
     name: 'getSessionToken',
     callbackEventType: CallbackEvents.GetSessionToken,
     handler: function (handshake) {
         return new Promise(function (resolve) {
-            if (sessionToken !== null && !isExpiring(sessionToken)) {
-                return resolve(sessionToken);
+            if (sessionTokenInfo !== null && !isExpiring(sessionTokenInfo)) {
+                return resolve(sessionTokenInfo.token);
             }
             handshake.requestParent(Events.GetSessionToken).then(function (data) {
-                resolve(data.sessionToken);
+                sessionTokenInfo = decodeToken(data.sessionToken);
+                resolve(sessionTokenInfo.token);
             });
         });
     }
