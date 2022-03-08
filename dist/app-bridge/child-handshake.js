@@ -64,7 +64,7 @@ var ChildHandshake = /** @class */ (function () {
                                 return result;
                             }
                             return __assign(__assign({}, result), (_a = {}, _a[feature.callbackEventType] = function (data) {
-                                var event = new Event("".concat(data.eventType, "-").concat(data.clientId, "-").concat(data.eventId));
+                                var event = new Event(data.eventId);
                                 event.data = data;
                                 eventHub.dispatchEvent(event);
                                 if (feature.callbackHandler) {
@@ -91,10 +91,10 @@ var ChildHandshake = /** @class */ (function () {
         }
         return feature.handler(this, params);
     };
-    ChildHandshake.prototype.getEventId = function () {
+    ChildHandshake.prototype.getEventId = function (clientId, eventType) {
         var rand = Math.random().toString(16).slice(5);
         var ts = new Date().getTime().toString();
-        return "".concat(rand, "-").concat(ts);
+        return "".concat(eventType, "-").concat(clientId, "-").concat(rand, "-").concat(ts);
     };
     /**
      * send data to AdminSDK (one way trigger)
@@ -105,7 +105,7 @@ var ChildHandshake = /** @class */ (function () {
         if (!this.postmate) {
             throw new Error('Handshake has not been initialized');
         }
-        var eventId = this.getEventId();
+        var eventId = this.getEventId(this.clientId, eventType);
         var payload = __assign({ clientId: this.clientId, eventType: eventType, eventId: eventId }, (data || {}));
         this.postmate.emit(eventType, payload);
     };
@@ -119,10 +119,10 @@ var ChildHandshake = /** @class */ (function () {
         if (!this.postmate) {
             throw new Error('Handshake has not been initialized');
         }
-        var eventId = this.getEventId();
+        var eventId = this.getEventId(this.clientId, eventType);
         var payload = __assign({ clientId: this.clientId, eventType: eventType, eventId: eventId }, (data || {}));
         return new Promise(function (resolve) {
-            eventHub.addEventListener("".concat(eventType, "-").concat(_this.clientId, "-").concat(eventId), function (evt) {
+            eventHub.addEventListener(eventId, function (evt) {
                 resolve(evt.data);
             }, { once: true });
             _this.postmate.emit(eventType, payload);

@@ -8,7 +8,7 @@ export declare class ChildHandshake {
     init(): Promise<void>;
     addFeature(feature: AppBridgeFeature): void;
     handle(featureName: string, params?: any): any;
-    getEventId(): string;
+    getEventId(clientId: string, eventType: string): string;
     /**
      * send data to AdminSDK (one way trigger)
      * @param eventType
