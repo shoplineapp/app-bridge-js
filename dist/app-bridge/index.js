@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import { getSessionToken as getSessionTokenFeature } from '../features/get-session-token/app-bridge-feature';
 import { redirect as redirectFeature } from '../features/redirect/app-bridge-feature';
+import { goBack as goBackFeature } from '../features/go-back/app-bridge-feature';
 import { oauth as oauthFeature } from '../features/oauth/app-bridge-feature';
 import { languageChanged as languageChangedFeature } from '../features/language-changed/app-bridge-feature';
 import { getLanguage as getLanguageFeature } from '../features/get-language/app-bridge-feature';
@@ -53,6 +54,7 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                 handshake.addFeature(languageChangedFeature);
                 handshake.addFeature(getSessionTokenFeature);
                 handshake.addFeature(redirectFeature);
+                handshake.addFeature(goBackFeature);
                 handshake.addFeature(oauthFeature);
                 handshake.addFeature(getLanguageFeature);
                 handshake.addFeature(intercomFeature);
@@ -74,6 +76,9 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                         }); },
                         redirect: function (url) {
                             handshake.handle(redirectFeature.name, { url: url });
+                        },
+                        goBack: function () {
+                            handshake.handle(goBackFeature.name);
                         },
                         oauth: function () {
                             handshake.handle(oauthFeature.name, { authUrl: options.authUrl });

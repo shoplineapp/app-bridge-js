@@ -3,6 +3,7 @@
  */
 export var Events = {
     Redirect: 'app-bridge:redirect',
+    GoBack: 'app-bridge:go-back',
     GetSessionToken: 'app-bridge:get-session-token',
     Oauth: 'app-bridge:oauth',
     Intercom: 'app-bridge:intercom',

@@ -43,7 +43,14 @@ const sessionToken = await appBridge.getSessionToken();
 ```javascript
 appBridge.redirect('https://shoplineapp.com')
 ```
+---
+> appBridge.goBack()
 
+- navigate to the last route. will not exit the admin app.
+
+```javascript
+appBridge.goBack()
+```
 ---
 > appBridge.oauth()
 

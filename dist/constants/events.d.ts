@@ -3,6 +3,7 @@
  */
 export declare const Events: {
     Redirect: string;
+    GoBack: string;
     GetSessionToken: string;
     Oauth: string;
     Intercom: string;
