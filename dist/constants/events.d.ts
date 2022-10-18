@@ -3,10 +3,11 @@
  */
 export declare const Events: {
     Redirect: string;
+    GoBack: string;
     GetSessionToken: string;
     Oauth: string;
     Intercom: string;
     GetLanguage: string;
     GetCurrentUrl: string;
-    RouteChange: string;
+    NotifyAppRouteChanged: string;
 };

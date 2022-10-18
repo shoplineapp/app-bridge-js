@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import { getSessionToken as getSessionTokenFeature } from '../features/get-session-token/app-bridge-feature';
 import { redirect as redirectFeature } from '../features/redirect/app-bridge-feature';
+import { goBack as goBackFeature } from '../features/go-back/app-bridge-feature';
 import { oauth as oauthFeature } from '../features/oauth/app-bridge-feature';
 import { languageChanged as languageChangedFeature } from '../features/language-changed/app-bridge-feature';
 import { getLanguage as getLanguageFeature } from '../features/get-language/app-bridge-feature';
@@ -43,7 +44,7 @@ import eventHub from '../events/event-hub';
 import { ChildHandshake } from './child-handshake';
 import { intercom as intercomFeature } from '../features/intercom/app-bridge-feature';
 import { getCurrentUrl as getCurrentUrlFeature } from '../features/get-current-url/app-bridge-feature';
-import { routeChange as routeChangeFeature } from '../features/route-change/app-bridge-feature';
+import { notifyAppRouteChanged as notifyAppRouteChangedFeature } from '../features/notify-app-route-changed/app-bridge-feature';
 var init = function (options) { return __awaiter(void 0, void 0, void 0, function () {
     var handshake;
     return __generator(this, function (_a) {
@@ -53,22 +54,24 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                 handshake.addFeature(languageChangedFeature);
                 handshake.addFeature(getSessionTokenFeature);
                 handshake.addFeature(redirectFeature);
+                handshake.addFeature(goBackFeature);
                 handshake.addFeature(oauthFeature);
                 handshake.addFeature(getLanguageFeature);
                 handshake.addFeature(intercomFeature);
                 handshake.addFeature(getCurrentUrlFeature);
-                handshake.addFeature(routeChangeFeature);
+                handshake.addFeature(notifyAppRouteChangedFeature);
                 return [4 /*yield*/, handshake.init()];
             case 1:
                 _a.sent();
                 return [2 /*return*/, {
-                        subscribe: function (event, handler) {
+                        onLanguageChanged: function (handler) {
                             var cb = function (e) {
-                                handler(e.data);
+                                var _a;
+                                handler((_a = e.data) === null || _a === void 0 ? void 0 : _a['language']);
                             };
-                            eventHub.addEventListener(event, cb);
+                            eventHub.addEventListener('shopline:language-changed', cb);
                             var unsubscribeFunction = function () {
-                                eventHub.removeEventListener(event, cb);
+                                eventHub.removeEventListener('shopline:language-changed', cb);
                             };
                             return unsubscribeFunction;
                         },
@@ -79,6 +82,9 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                         }); },
                         redirect: function (url) {
                             handshake.handle(redirectFeature.name, { url: url });
+                        },
+                        goBack: function () {
+                            handshake.handle(goBackFeature.name);
                         },
                         oauth: function () {
                             handshake.handle(oauthFeature.name, { authUrl: options.authUrl });
@@ -96,8 +102,8 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                                 return [2 /*return*/, handshake.handle(getCurrentUrlFeature.name)];
                             });
                         }); },
-                        routeChange: function (path, querystring) {
-                            handshake.handle(routeChangeFeature.name, { path: path, querystring: querystring });
+                        notifyAppRouteChanged: function (url) {
+                            handshake.handle(notifyAppRouteChangedFeature.name, { url: url });
                         }
                     }];
         }

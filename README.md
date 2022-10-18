@@ -13,24 +13,23 @@ const appBridge = await AppBridge.init({clientId, authUrl});
 
 ### API References
 
-> appBridge.subscribe(`event`, `callback`)
+---
+> appBridge.onLanguageChanged(callback)
 
-- Listening to events triggered by parent frame
+- Triggered when admin language is changed
 - Returns an unsubscribe function
-- Supported events:
-  - `shopline:language-changed`
 
 ```javascript
-// to subscirbe
-const unsubscribe = appBridge.subscribe('shopline:language-changed', function({ language }) {
+// to subscribe
+const unsubscribe = appBridge.onLanguageChanged(function(language) {
   console.log(language)
 });
 
 // to unsubscribe
 unsubscribe();
 ```
- 
- ---
+
+---
 > appBridge.getSessionToken()
 
 - returning a JWT token used to identify current logged in user
@@ -48,7 +47,14 @@ const sessionToken = await appBridge.getSessionToken();
 ```javascript
 appBridge.redirect('https://shoplineapp.com')
 ```
+---
+> appBridge.goBack()
 
+- navigate to the last route. will not exit the admin app.
+
+```javascript
+appBridge.goBack()
+```
 ---
 > appBridge.oauth()
 

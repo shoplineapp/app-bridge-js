@@ -1,12 +1,13 @@
 declare interface AppBridgeClient {
     getSessionToken(): Promise<string>;
     redirect(url: string): void;
+    goBack(): void;
     oauth(redirectUrl: string, scope: string): void;
-    subscribe(event: string, handler: Function): Function;
+    onLanguageChanged(handler: (language: string) => void): Function;
     getLanguage(): Promise<string>;
     intercom(): void;
     getCurrentUrl(): Promise<string>;
-    routeChange(path: string, querystring?: string): void;
+    notifyAppRouteChanged(url: string): void;
 }
 export declare const AppBridge: {
     init: (options: {
