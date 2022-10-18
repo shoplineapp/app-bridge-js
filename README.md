@@ -16,13 +16,18 @@ const appBridge = await AppBridge.init({clientId, authUrl});
 > appBridge.subscribe(`event`, `callback`)
 
 - Listening to events triggered by parent frame
+- Returns an unsubscribe function
 - Supported events:
   - `shopline:language-changed`
 
 ```javascript
-appBridge.subscribe('shopline:language-changed', function({ language }) {
+// to subscirbe
+const unsubscribe = appBridge.subscribe('shopline:language-changed', function({ language }) {
   console.log(language)
 });
+
+// to unsubscribe
+unsubscribe();
 ```
  
  ---
