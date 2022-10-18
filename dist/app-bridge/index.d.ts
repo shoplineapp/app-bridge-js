@@ -2,7 +2,7 @@ declare interface AppBridgeClient {
     getSessionToken(): Promise<string>;
     redirect(url: string): void;
     oauth(redirectUrl: string, scope: string): void;
-    subscribe(event: string, handler: Function): void;
+    subscribe(event: string, handler: Function): Function;
     getLanguage(): Promise<string>;
     intercom(): void;
     getCurrentUrl(): Promise<string>;

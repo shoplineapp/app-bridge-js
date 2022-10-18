@@ -63,9 +63,14 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                 _a.sent();
                 return [2 /*return*/, {
                         subscribe: function (event, handler) {
-                            eventHub.addEventListener(event, function (e) {
+                            var cb = function (e) {
                                 handler(e.data);
-                            });
+                            };
+                            eventHub.addEventListener(event, cb);
+                            var unsubscribeFunction = function () {
+                                eventHub.removeEventListener(event, cb);
+                            };
+                            return unsubscribeFunction;
                         },
                         getSessionToken: function () { return __awaiter(void 0, void 0, void 0, function () {
                             return __generator(this, function (_a) {
