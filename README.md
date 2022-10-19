@@ -55,8 +55,7 @@ appBridge.redirect('https://shoplineapp.com')
 - execute the oauth flow to obtain access token 
 
 ```javascript
-const scopes = 'products categories'
-appBridge.oauth('https://developer.com/callback/url', scopes)
+appBridge.oauth()
 ```
 
 ---
