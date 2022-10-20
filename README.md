@@ -84,14 +84,12 @@ appBridge.oauth()
 ```
 
 ---
-> appBridge.routeChange()
+> appBridge.notifyAppRouteChanged()
 
 - notify parent frame to update the top frame route
 
 ```javascript
-const path = '/page1';
-const querystring = 'foo=bar&bar=foo';
-appBridge.routeChange(path, querystring)
+appBridge.notifyAppRouteChanged('/page1?foo=bar&bar=foo')
 ```
 
 ---
