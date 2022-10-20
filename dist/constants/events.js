@@ -3,10 +3,11 @@
  */
 export var Events = {
     Redirect: 'app-bridge:redirect',
+    GoBack: 'app-bridge:go-back',
     GetSessionToken: 'app-bridge:get-session-token',
     Oauth: 'app-bridge:oauth',
     Intercom: 'app-bridge:intercom',
     GetLanguage: 'app-bridge:get-language',
     GetCurrentUrl: 'app-bridge:get-current-url',
-    RouteChange: 'app-bridge:route-change'
+    NotifyAppRouteChanged: 'app-bridge:notify-app-route-changed',
 };
