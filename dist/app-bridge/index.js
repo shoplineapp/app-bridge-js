@@ -45,6 +45,7 @@ import { ChildHandshake } from './child-handshake';
 import { intercom as intercomFeature } from '../features/intercom/app-bridge-feature';
 import { getCurrentUrl as getCurrentUrlFeature } from '../features/get-current-url/app-bridge-feature';
 import { notifyAppRouteChanged as notifyAppRouteChangedFeature } from '../features/notify-app-route-changed/app-bridge-feature';
+import { changePageTitle as changePageTitleFeature } from '../features/change-page-title/app-bridge-feature';
 var init = function (options) { return __awaiter(void 0, void 0, void 0, function () {
     var handshake;
     return __generator(this, function (_a) {
@@ -55,6 +56,7 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                 handshake.addFeature(getSessionTokenFeature);
                 handshake.addFeature(redirectFeature);
                 handshake.addFeature(goBackFeature);
+                handshake.addFeature(changePageTitleFeature);
                 handshake.addFeature(oauthFeature);
                 handshake.addFeature(getLanguageFeature);
                 handshake.addFeature(intercomFeature);
@@ -85,6 +87,9 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                         },
                         goBack: function () {
                             handshake.handle(goBackFeature.name);
+                        },
+                        changePageTitle: function (title) {
+                            handshake.handle(changePageTitleFeature.name, { title: title });
                         },
                         oauth: function () {
                             handshake.handle(oauthFeature.name, { authUrl: options.authUrl });

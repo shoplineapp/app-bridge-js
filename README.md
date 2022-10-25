@@ -84,12 +84,14 @@ appBridge.oauth()
 ```
 
 ---
-> appBridge.notifyAppRouteChanged()
+> appBridge.routeChange()
 
 - notify parent frame to update the top frame route
 
 ```javascript
-appBridge.notifyAppRouteChanged('/page1?foo=bar&bar=foo')
+const path = '/page1';
+const querystring = 'foo=bar&bar=foo';
+appBridge.routeChange(path, querystring)
 ```
 
 ---
@@ -99,4 +101,13 @@ appBridge.notifyAppRouteChanged('/page1?foo=bar&bar=foo')
 
 ```javascript
 appBridge.intercom()
+```
+
+---
+> appBridge.changePageTitle()
+
+- change page title in EC Admin
+
+```javascript
+appBridge.changePageTitle('Demo Page Title')
 ```

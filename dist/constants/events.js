@@ -10,4 +10,5 @@ export var Events = {
     GetLanguage: 'app-bridge:get-language',
     GetCurrentUrl: 'app-bridge:get-current-url',
     NotifyAppRouteChanged: 'app-bridge:notify-app-route-changed',
+    ChangePageTitle: 'app-bridge:change-page-title',
 };
