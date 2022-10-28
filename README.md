@@ -111,3 +111,37 @@ appBridge.intercom()
 ```javascript
 appBridge.changePageTitle('Demo Page Title')
 ```
+
+---
+> appBridge.onRouteChange()
+
+- Triggered when admin route is changed
+- Returns an unsubscribe function
+
+```javascript
+// to subscribe
+const unsubscribe = appBridge.onRouteChange(function(event) {
+  event.preventDefault();
+});
+
+// to unsubscribe
+unsubscribe();
+```
+
+---
+> appBridge.routeChangeCancel()
+
+- Notify EC Admin to cancel the intercepted route change
+
+```javascript
+appBridge.routeChangeCancel()
+```
+
+---
+> appBridge.routeChangeContinue()
+
+- Notify EC Admin to continue the intercepted route change
+
+```javascript
+appBridge.routeChangeContinue()
+```

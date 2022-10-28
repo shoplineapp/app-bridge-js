@@ -1,10 +1,15 @@
-import { Events } from '../../constants/events';
+import { CallbackEvents } from '../../constants/callback-events';
+import eventHub from '../../events/event-hub';
 export var routeChange = {
     name: 'routeChange',
-    handler: function (handshake, params) {
-        handshake.toParent(Events.RouteChange, {
-            path: params.path,
-            querystring: params.querystring
-        });
-    }
+    callbackEventType: CallbackEvents.RouteChange,
+    callbackHandler: function () {
+        var event = new CustomEvent(CallbackEvents.RouteChange, { cancelable: true });
+        event.data = {
+            eventType: CallbackEvents.RouteChange,
+        };
+        var continueEvent = eventHub.dispatchEvent(event);
+        return !continueEvent;
+    },
+    useCallbackDirectly: true,
 };

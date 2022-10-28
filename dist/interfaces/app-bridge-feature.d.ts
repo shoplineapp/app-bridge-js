@@ -20,4 +20,8 @@ export declare interface AppBridgeFeature {
      * @param data
      */
     callbackHandler?: (data: AppBridgeEventData) => any;
+    /**
+     * Set to true to skip sending events to child
+     */
+    useCallbackDirectly?: boolean;
 }

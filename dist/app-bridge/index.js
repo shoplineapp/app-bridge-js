@@ -46,6 +46,9 @@ import { intercom as intercomFeature } from '../features/intercom/app-bridge-fea
 import { getCurrentUrl as getCurrentUrlFeature } from '../features/get-current-url/app-bridge-feature';
 import { notifyAppRouteChanged as notifyAppRouteChangedFeature } from '../features/notify-app-route-changed/app-bridge-feature';
 import { changePageTitle as changePageTitleFeature } from '../features/change-page-title/app-bridge-feature';
+import { routeChange as routeChangeFeature } from '../features/route-change/app-bridge-feature';
+import { routeChangeContinue as routeChangeContinueFeature } from '../features/route-change-continue/app-bridge-feature';
+import { routeChangeCancel as routeChangeCancelFeature } from '../features/route-change-cancel/app-bridge-feature';
 var init = function (options) { return __awaiter(void 0, void 0, void 0, function () {
     var handshake;
     return __generator(this, function (_a) {
@@ -62,6 +65,9 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                 handshake.addFeature(intercomFeature);
                 handshake.addFeature(getCurrentUrlFeature);
                 handshake.addFeature(notifyAppRouteChangedFeature);
+                handshake.addFeature(routeChangeFeature);
+                handshake.addFeature(routeChangeContinueFeature);
+                handshake.addFeature(routeChangeCancelFeature);
                 return [4 /*yield*/, handshake.init()];
             case 1:
                 _a.sent();
@@ -109,6 +115,22 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                         }); },
                         notifyAppRouteChanged: function (url) {
                             handshake.handle(notifyAppRouteChangedFeature.name, { url: url });
+                        },
+                        onRouteChange: function (handler) {
+                            var cb = function (e) {
+                                handler(e);
+                            };
+                            eventHub.addEventListener('shopline:route-change', cb);
+                            var unsubscribeFunction = function () {
+                                eventHub.removeEventListener('shopline:route-change', cb);
+                            };
+                            return unsubscribeFunction;
+                        },
+                        routeChangeContinue: function () {
+                            handshake.handle(routeChangeContinueFeature.name);
+                        },
+                        routeChangeCancel: function () {
+                            handshake.handle(routeChangeCancelFeature.name);
                         }
                     }];
         }
