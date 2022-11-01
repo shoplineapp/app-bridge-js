@@ -64,13 +64,11 @@ var ChildHandshake = /** @class */ (function () {
                                 return result;
                             }
                             return __assign(__assign({}, result), (_a = {}, _a[feature.callbackEventType] = function (data) {
-                                if (!feature.useCallbackDirectly) {
-                                    var event_1 = new Event(data.eventId);
-                                    event_1.data = data;
-                                    eventHub.dispatchEvent(event_1);
-                                }
+                                var event = new Event(data.eventId);
+                                event.data = data;
+                                eventHub.dispatchEvent(event);
                                 if (feature.callbackHandler) {
-                                    return feature.callbackHandler(data);
+                                    feature.callbackHandler(data);
                                 }
                             }, _a));
                         }, {});

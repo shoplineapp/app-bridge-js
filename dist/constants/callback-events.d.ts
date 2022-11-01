@@ -6,5 +6,5 @@ export declare const CallbackEvents: {
     LanguageChanged: string;
     GetLanguage: string;
     GetCurrentUrl: string;
-    RouteChange: string;
+    RouteChanged: string;
 };

@@ -9,9 +9,8 @@ declare interface AppBridgeClient {
     getCurrentUrl(): Promise<string>;
     notifyAppRouteChanged(url: string): void;
     changePageTitle(title: string): void;
-    onRouteChange(handler: (e: Event) => boolean): Function;
-    routeChangeContinue(): void;
-    routeChangeCancel(): void;
+    onRouteChanged(handler: (from: string, to: string) => void): Function;
+    retryRouteChange(): void;
 }
 export declare const AppBridge: {
     init: (options: {

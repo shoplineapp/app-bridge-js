@@ -120,8 +120,9 @@ appBridge.changePageTitle('Demo Page Title')
 
 ```javascript
 // to subscribe
-const unsubscribe = appBridge.onRouteChange(function(event) {
-  event.preventDefault();
+const unsubscribe = appBridge.onRouteChange(function(fromUrl, toUrl) {
+  console.log('From:', fromUrl);
+  console.log('To:', toUrl);
 });
 
 // to unsubscribe
@@ -131,17 +132,8 @@ unsubscribe();
 ---
 > appBridge.routeChangeCancel()
 
-- Notify EC Admin to cancel the intercepted route change
+- Notify EC Admin to retry the intercepted route change
 
 ```javascript
-appBridge.routeChangeCancel()
-```
-
----
-> appBridge.routeChangeContinue()
-
-- Notify EC Admin to continue the intercepted route change
-
-```javascript
-appBridge.routeChangeContinue()
+appBridge.retryRouteChange();
 ```

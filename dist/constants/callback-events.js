@@ -6,5 +6,5 @@ export var CallbackEvents = {
     LanguageChanged: 'shopline:language-changed',
     GetLanguage: 'shopline:get-language',
     GetCurrentUrl: 'shopline:get-current-url',
-    RouteChange: 'shopline:route-change',
+    RouteChanged: 'shopline:route-changed',
 };
