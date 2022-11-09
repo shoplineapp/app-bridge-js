@@ -11,6 +11,6 @@ export var Events = {
     GetCurrentUrl: 'app-bridge:get-current-url',
     NotifyAppRouteChanged: 'app-bridge:notify-app-route-changed',
     ChangePageTitle: 'app-bridge:change-page-title',
-    RetryRouteChange: 'app-bridge:retry-route-change',
-    SubscribeRouteChange: 'app-bridge:subscribe-route-change',
+    RouteChangeRetry: 'app-bridge:route-change-retry',
+    RouteChangeSubscribe: 'app-bridge:route-change-subscribe',
 };

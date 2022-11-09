@@ -11,6 +11,6 @@ export declare const Events: {
     GetCurrentUrl: string;
     NotifyAppRouteChanged: string;
     ChangePageTitle: string;
-    RetryRouteChange: string;
-    SubscribeRouteChange: string;
+    RouteChangeRetry: string;
+    RouteChangeSubscribe: string;
 };
