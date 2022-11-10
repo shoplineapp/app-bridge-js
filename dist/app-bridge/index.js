@@ -45,6 +45,11 @@ import { ChildHandshake } from './child-handshake';
 import { intercom as intercomFeature } from '../features/intercom/app-bridge-feature';
 import { getCurrentUrl as getCurrentUrlFeature } from '../features/get-current-url/app-bridge-feature';
 import { notifyAppRouteChanged as notifyAppRouteChangedFeature } from '../features/notify-app-route-changed/app-bridge-feature';
+import { changePageTitle as changePageTitleFeature } from '../features/change-page-title/app-bridge-feature';
+import { routeChanged as routeChangedFeature } from '../features/route-changed/app-bridge-feature';
+import { routeChangeRetry as routeChangeRetryFeature } from '../features/route-change-retry/app-bridge-feature';
+import { CallbackEvents } from '../constants/callback-events';
+import { routeChangeSubscribe as routeChangeSubscribeFeature } from '../features/route-change-subscribe/app-bridge-feature';
 var init = function (options) { return __awaiter(void 0, void 0, void 0, function () {
     var handshake;
     return __generator(this, function (_a) {
@@ -55,11 +60,15 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                 handshake.addFeature(getSessionTokenFeature);
                 handshake.addFeature(redirectFeature);
                 handshake.addFeature(goBackFeature);
+                handshake.addFeature(changePageTitleFeature);
                 handshake.addFeature(oauthFeature);
                 handshake.addFeature(getLanguageFeature);
                 handshake.addFeature(intercomFeature);
                 handshake.addFeature(getCurrentUrlFeature);
                 handshake.addFeature(notifyAppRouteChangedFeature);
+                handshake.addFeature(routeChangedFeature);
+                handshake.addFeature(routeChangeRetryFeature);
+                handshake.addFeature(routeChangeSubscribeFeature);
                 return [4 /*yield*/, handshake.init()];
             case 1:
                 _a.sent();
@@ -86,6 +95,9 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                         goBack: function () {
                             handshake.handle(goBackFeature.name);
                         },
+                        changePageTitle: function (title) {
+                            handshake.handle(changePageTitleFeature.name, { title: title });
+                        },
                         oauth: function () {
                             handshake.handle(oauthFeature.name, { authUrl: options.authUrl });
                         },
@@ -104,6 +116,25 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                         }); },
                         notifyAppRouteChanged: function (url) {
                             handshake.handle(notifyAppRouteChangedFeature.name, { url: url });
+                        },
+                        onRouteChanged: function (handler) {
+                            var cb = function (e) {
+                                var _a, _b;
+                                var event = e;
+                                handler((_a = event === null || event === void 0 ? void 0 : event.data) === null || _a === void 0 ? void 0 : _a['from'], (_b = event === null || event === void 0 ? void 0 : event.data) === null || _b === void 0 ? void 0 : _b['to']);
+                            };
+                            eventHub.addEventListener(CallbackEvents.RouteChanged, cb);
+                            // Notify admin subscribed
+                            handshake.handle(routeChangeSubscribeFeature.name, { subscribed: true });
+                            var unsubscribeFunction = function () {
+                                // Notify admin unsubscribed
+                                handshake.handle(routeChangeSubscribeFeature.name, { subscribed: false });
+                                eventHub.removeEventListener(CallbackEvents.RouteChanged, cb);
+                            };
+                            return unsubscribeFunction;
+                        },
+                        retryRouteChange: function () {
+                            handshake.handle(routeChangeRetryFeature.name);
                         }
                     }];
         }

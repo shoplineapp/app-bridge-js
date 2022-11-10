@@ -10,4 +10,7 @@ export declare const Events: {
     GetLanguage: string;
     GetCurrentUrl: string;
     NotifyAppRouteChanged: string;
+    ChangePageTitle: string;
+    RouteChangeRetry: string;
+    RouteChangeSubscribe: string;
 };

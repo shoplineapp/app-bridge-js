@@ -8,6 +8,9 @@ declare interface AppBridgeClient {
     intercom(): void;
     getCurrentUrl(): Promise<string>;
     notifyAppRouteChanged(url: string): void;
+    changePageTitle(title: string): void;
+    onRouteChanged(handler: (from: string, to: string) => void): Function;
+    retryRouteChange(): void;
 }
 export declare const AppBridge: {
     init: (options: {
