@@ -1,7 +1,7 @@
 import { CallbackEvents } from '../../constants/callback-events';
 import eventHub from '../../events/event-hub';
 export var routeChanged = {
-    name: 'RouteChanged',
+    name: 'routeChanged',
     callbackEventType: CallbackEvents.RouteChanged,
     callbackHandler: function (data) {
         var from = data.from, to = data.to;

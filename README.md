@@ -116,7 +116,6 @@ appBridge.changePageTitle('Demo Page Title')
 > appBridge.onRouteChange(callback)
 
 - Triggered when admin route is going to change
-- All admin route change will be intercepted, unless appBridge.retryRouteChange() is called
 - Returns an unsubscribe function
 
 ```javascript
