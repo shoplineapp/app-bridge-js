@@ -49,7 +49,7 @@ import { changePageTitle as changePageTitleFeature } from '../features/change-pa
 import { routeChanged as routeChangedFeature } from '../features/route-changed/app-bridge-feature';
 import { routeChangeRetry as routeChangeRetryFeature } from '../features/route-change-retry/app-bridge-feature';
 import { CallbackEvents } from '../constants/callback-events';
-import { routeChangeSubscribe as routeChangeSubscribeFeature } from '../features/route-change-subscribe/app-bridge-feature';
+import { routeChangeIntercept as routeChangeInterceptFeature } from '../features/route-change-intercept/app-bridge-feature';
 var init = function (options) { return __awaiter(void 0, void 0, void 0, function () {
     var handshake;
     return __generator(this, function (_a) {
@@ -68,7 +68,7 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                 handshake.addFeature(notifyAppRouteChangedFeature);
                 handshake.addFeature(routeChangedFeature);
                 handshake.addFeature(routeChangeRetryFeature);
-                handshake.addFeature(routeChangeSubscribeFeature);
+                handshake.addFeature(routeChangeInterceptFeature);
                 return [4 /*yield*/, handshake.init()];
             case 1:
                 _a.sent();
@@ -117,21 +117,21 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                         notifyAppRouteChanged: function (url) {
                             handshake.handle(notifyAppRouteChangedFeature.name, { url: url });
                         },
-                        onRouteChanged: function (handler) {
+                        interceptRouteChange: function (handler) {
                             var cb = function (e) {
                                 var _a, _b;
                                 var event = e;
                                 handler((_a = event === null || event === void 0 ? void 0 : event.data) === null || _a === void 0 ? void 0 : _a['from'], (_b = event === null || event === void 0 ? void 0 : event.data) === null || _b === void 0 ? void 0 : _b['to']);
                             };
                             eventHub.addEventListener(CallbackEvents.RouteChanged, cb);
-                            // Notify admin subscribed
-                            handshake.handle(routeChangeSubscribeFeature.name, { subscribed: true });
-                            var unsubscribeFunction = function () {
-                                // Notify admin unsubscribed
-                                handshake.handle(routeChangeSubscribeFeature.name, { subscribed: false });
+                            // Notify admin to start intercepting route change
+                            handshake.handle(routeChangeInterceptFeature.name, { intercept: true });
+                            var stopInterception = function () {
+                                // Notify admin to stop intercepting route change
+                                handshake.handle(routeChangeInterceptFeature.name, { intercept: false });
                                 eventHub.removeEventListener(CallbackEvents.RouteChanged, cb);
                             };
-                            return unsubscribeFunction;
+                            return stopInterception;
                         },
                         retryRouteChange: function () {
                             handshake.handle(routeChangeRetryFeature.name);

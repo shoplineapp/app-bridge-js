@@ -12,5 +12,5 @@ export var Events = {
     NotifyAppRouteChanged: 'app-bridge:notify-app-route-changed',
     ChangePageTitle: 'app-bridge:change-page-title',
     RouteChangeRetry: 'app-bridge:route-change-retry',
-    RouteChangeSubscribe: 'app-bridge:route-change-subscribe',
+    RouteChangeIntercept: 'app-bridge:route-change-intercept',
 };

@@ -113,20 +113,20 @@ appBridge.changePageTitle('Demo Page Title')
 ```
 
 ---
-> appBridge.onRouteChange(callback)
+> appBridge.interceptRouteChange(callback)
 
-- Triggered when admin route is going to change
-- Returns an unsubscribe function
+- Intercept admin route change and trigger callback
+- Returns a function to stop interception
 
 ```javascript
-// to subscribe
-const unsubscribe = appBridge.onRouteChange(function(fromUrl, toUrl) {
+// to intercept
+const stopInterception = appBridge.interceptRouteChange(function(fromUrl, toUrl) {
   console.log('From:', fromUrl);
   console.log('To:', toUrl);
 });
 
-// to unsubscribe
-unsubscribe();
+// to stop interception
+stopInterception();
 ```
 
 ---
