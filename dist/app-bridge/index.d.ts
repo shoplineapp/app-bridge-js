@@ -9,7 +9,7 @@ declare interface AppBridgeClient {
     getCurrentUrl(): Promise<string>;
     notifyAppRouteChanged(url: string): void;
     changePageTitle(title: string): void;
-    onRouteChanged(handler: (from: string, to: string) => void): Function;
+    interceptRouteChange(handler: (from: string, to: string) => void): Function;
     retryRouteChange(): void;
 }
 export declare const AppBridge: {

@@ -1,2 +1,2 @@
 import { AppBridgeFeature } from '../../interfaces/app-bridge-feature';
-export declare const routeChange: AppBridgeFeature;
+export declare const routeChangeIntercept: AppBridgeFeature;
