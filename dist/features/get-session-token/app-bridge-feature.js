@@ -17,13 +17,20 @@ export var getSessionToken = {
     name: 'getSessionToken',
     callbackEventType: CallbackEvents.GetSessionToken,
     handler: function (handshake) {
-        return new Promise(function (resolve) {
+        return new Promise(function (resolve, reject) {
             if (sessionTokenInfo !== null && !isExpiring(sessionTokenInfo)) {
                 return resolve(sessionTokenInfo.token);
             }
             handshake.requestParent(Events.GetSessionToken).then(function (data) {
+                if (!(data === null || data === void 0 ? void 0 : data.sessionToken)) {
+                    var err = new Error("session token not found");
+                    reject(err);
+                    return;
+                }
                 sessionTokenInfo = decodeToken(data.sessionToken);
                 resolve(sessionTokenInfo.token);
+            }).catch(function (err) {
+                reject(err);
             });
         });
     }
