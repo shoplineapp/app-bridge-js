@@ -1,6 +1,7 @@
 import jwt_decode from 'jwt-decode';
 import { CallbackEvents } from '../../constants/callback-events';
 import { Events } from '../../constants/events';
+import { TokenNotFoundError } from '../../errors/token-not-found-error';
 var sessionTokenInfo = null;
 var isExpiring = function (tokenInfo) {
     var payload = tokenInfo.payload;
@@ -23,7 +24,7 @@ export var getSessionToken = {
             }
             handshake.requestParent(Events.GetSessionToken).then(function (data) {
                 if (!(data === null || data === void 0 ? void 0 : data.sessionToken)) {
-                    var err = new Error("session token not found");
+                    var err = new TokenNotFoundError("session token not found");
                     reject(err);
                     return;
                 }
