@@ -14,18 +14,18 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { ErrorCodes } from "../constants/error-codes";
-var BaseError = /** @class */ (function (_super) {
-    __extends(BaseError, _super);
-    function BaseError(message, code) {
+var AppBridgeError = /** @class */ (function (_super) {
+    __extends(AppBridgeError, _super);
+    function AppBridgeError(message, code) {
         var _newTarget = this.constructor;
         var _this = _super.call(this, message) || this;
         _this.code = code || ErrorCodes.UNKNOWN_ERROR;
         Object.setPrototypeOf(_this, _newTarget.prototype);
         if (Error.captureStackTrace) {
-            Error.captureStackTrace(_this, BaseError);
+            Error.captureStackTrace(_this, _this.constructor);
         }
         return _this;
     }
-    return BaseError;
+    return AppBridgeError;
 }(Error));
-export { BaseError };
+export { AppBridgeError };

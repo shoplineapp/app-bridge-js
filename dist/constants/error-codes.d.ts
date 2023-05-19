@@ -1,4 +1,4 @@
 export declare const ErrorCodes: {
-    TOKEN_NOT_FOUND: string;
+    SESSION_EXPIRED: string;
     UNKNOWN_ERROR: string;
 };

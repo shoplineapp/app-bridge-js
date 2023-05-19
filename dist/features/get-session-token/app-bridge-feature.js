@@ -1,7 +1,8 @@
 import jwt_decode from 'jwt-decode';
 import { CallbackEvents } from '../../constants/callback-events';
 import { Events } from '../../constants/events';
-import { TokenNotFoundError } from '../../errors/token-not-found-error';
+import { AppBridgeError } from '../../errors/app-bridge-error';
+import { ErrorCodes } from '../../constants/error-codes';
 var sessionTokenInfo = null;
 var isExpiring = function (tokenInfo) {
     var payload = tokenInfo.payload;
@@ -24,7 +25,7 @@ export var getSessionToken = {
             }
             handshake.requestParent(Events.GetSessionToken).then(function (data) {
                 if (!(data === null || data === void 0 ? void 0 : data.sessionToken)) {
-                    var err = new TokenNotFoundError("session token not found");
+                    var err = new AppBridgeError("Session expired", ErrorCodes.SESSION_EXPIRED);
                     reject(err);
                     return;
                 }
