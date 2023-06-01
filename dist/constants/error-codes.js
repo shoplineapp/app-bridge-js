@@ -1,0 +1,4 @@
+export var ErrorCodes = {
+    SESSION_EXPIRED: "SESSION_EXPIRED",
+    UNKNOWN_ERROR: "UNKNOWN_ERROR",
+};
