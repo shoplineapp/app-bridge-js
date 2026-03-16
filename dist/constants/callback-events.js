@@ -7,4 +7,5 @@ export var CallbackEvents = {
     GetLanguage: 'shopline:get-language',
     GetCurrentUrl: 'shopline:get-current-url',
     RouteChanged: 'shopline:route-changed',
+    GetMerchantAuthority: 'shopline:get-merchant-authority'
 };
