@@ -11,6 +11,7 @@ declare interface AppBridgeClient {
     changePageTitle(title: string): void;
     interceptRouteChange(handler: (from: string, to: string) => void): Function;
     retryRouteChange(): void;
+    getMerchantAuthority(): Promise<boolean>;
 }
 export declare const AppBridge: {
     init: (options: {

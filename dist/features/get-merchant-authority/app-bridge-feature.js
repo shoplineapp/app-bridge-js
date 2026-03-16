@@ -8,7 +8,7 @@ export var getMerchantAuthority = {
             handshake
                 .requestParent(Events.GetMerchantAuthority)
                 .then(function (data) {
-                resolve(data);
+                resolve(data.authorized);
             })
                 .catch(function (err) {
                 reject(err);

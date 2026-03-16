@@ -139,7 +139,12 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                         },
                         retryRouteChange: function () {
                             handshake.handle(routeChangeRetryFeature.name);
-                        }
+                        },
+                        getMerchantAuthority: function () { return __awaiter(void 0, void 0, void 0, function () {
+                            return __generator(this, function (_a) {
+                                return [2 /*return*/, handshake.handle(getMerchantAuthorityFeature.name)];
+                            });
+                        }); }
                     }];
         }
     });
