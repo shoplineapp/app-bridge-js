@@ -1,6 +1,7 @@
 export declare interface AppBridgeClient {
     getSessionToken(): Promise<string>;
     redirect(url: string): void;
+    redirectAdminPage(page: string): void;
     goBack(): void;
     oauth(redirectUrl: string, scope: string): void;
     onLanguageChanged(handler: (language: string) => void): Function;

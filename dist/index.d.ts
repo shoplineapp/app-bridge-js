@@ -1,2 +1,2 @@
-import { AppBridge } from './app-bridge';
-export { AppBridge };
+import { AppBridge, AppBridgeClient } from './app-bridge';
+export { AppBridge, AppBridgeClient };

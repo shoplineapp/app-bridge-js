@@ -1,2 +1,3 @@
 import { AppBridgeFeature } from '../../interfaces/app-bridge-feature';
-export declare const redirect: AppBridgeFeature;
+import { RedirectParams } from '../../types/resolver-request';
+export declare const redirect: AppBridgeFeature<RedirectParams>;

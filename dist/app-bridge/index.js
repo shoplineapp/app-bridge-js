@@ -94,6 +94,9 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                         redirect: function (url) {
                             handshake.handle(redirectFeature.name, { url: url });
                         },
+                        redirectAdminPage: function (page) {
+                            handshake.handle(redirectFeature.name, { admin_page: page });
+                        },
                         goBack: function () {
                             handshake.handle(goBackFeature.name);
                         },

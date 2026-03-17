@@ -1,5 +1,5 @@
-export declare type InternalPageTypes = 'AppDetailPage';
+export declare type AdminPageTypes = 'AppDetailPage';
 export declare interface RedirectParams {
-    internal_page?: InternalPageTypes;
+    admin_page?: AdminPageTypes;
     url?: string;
 }
