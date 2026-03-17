@@ -1,3 +1,4 @@
+import { AppAuthority } from '../types/resolver-response';
 export declare interface AppBridgeClient {
     getSessionToken(): Promise<string>;
     redirect(url: string): void;
@@ -12,7 +13,7 @@ export declare interface AppBridgeClient {
     changePageTitle(title: string): void;
     interceptRouteChange(handler: (from: string, to: string) => void): Function;
     retryRouteChange(): void;
-    getMerchantAuthorities(): Promise<boolean>;
+    getMerchantAuthorities(): Promise<AppAuthority>;
 }
 export declare const AppBridge: {
     init: (options: {
