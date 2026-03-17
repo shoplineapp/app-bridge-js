@@ -1,2 +1,2 @@
 import { AppBridgeFeature } from '../../interfaces/app-bridge-feature';
-export declare const getMerchantAuthority: AppBridgeFeature;
+export declare const getMerchantAuthorities: AppBridgeFeature;

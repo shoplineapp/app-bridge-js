@@ -7,5 +7,5 @@ export declare const CallbackEvents: {
     GetLanguage: string;
     GetCurrentUrl: string;
     RouteChanged: string;
-    GetMerchantAuthority: string;
+    GetMerchantAuthorities: string;
 };

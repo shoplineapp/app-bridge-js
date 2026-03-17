@@ -1,4 +1,4 @@
-declare interface AppBridgeClient {
+export declare interface AppBridgeClient {
     getSessionToken(): Promise<string>;
     redirect(url: string): void;
     goBack(): void;
@@ -11,7 +11,7 @@ declare interface AppBridgeClient {
     changePageTitle(title: string): void;
     interceptRouteChange(handler: (from: string, to: string) => void): Function;
     retryRouteChange(): void;
-    getMerchantAuthority(): Promise<boolean>;
+    getMerchantAuthorities(): Promise<boolean>;
 }
 export declare const AppBridge: {
     init: (options: {
@@ -19,4 +19,3 @@ export declare const AppBridge: {
         authUrl: string;
     }) => Promise<AppBridgeClient>;
 };
-export {};
