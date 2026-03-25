@@ -1,6 +1,6 @@
 export declare interface AppAuthority {
-    merchant_id: string;
+    merchantId: string;
     authorized: boolean;
-    version_type?: string;
+    versionType?: string;
     scopes?: string[];
 }

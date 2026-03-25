@@ -1,4 +1,2 @@
-import { AdminSDK } from './admin-sdk';
-import { AppBridge, AppBridgeClient } from './app-bridge';
-export { AdminActionResolvers } from './interfaces/admin-action-resolvers';
-export { AdminSDK, AppBridge, AppBridgeClient };
+import { AppBridge, AppBridgeClient } from "./app-bridge";
+export { AppBridge, AppBridgeClient };

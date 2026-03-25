@@ -47,6 +47,19 @@ const sessionToken = await appBridge.getSessionToken();
 ```javascript
 appBridge.redirect('https://shoplineapp.com')
 ```
+
+---
+> appBridge.redirectAdminPage(page)
+
+- performing a parent frame redirect to specific page
+
+provided enums:
+- `AppDetail`: redirect to embedded app's app store page
+
+```javascript
+appBridge.redirectAdminPage('AppDetail')
+```
+
 ---
 > appBridge.goBack()
 
@@ -136,4 +149,18 @@ stopInterception();
 
 ```javascript
 appBridge.retryRouteChange();
+```
+
+---
+> appBridge.getMerchantAuthorities()
+
+- Get merchant authorized state on app
+
+Returns
+- `authorized`: boolean, indicates merchant currently authorized to the app or not
+- `scopes`: string array, indicates what scopes do merchant authorized to the app
+- `versionType`: enum string, indicates what version does merchant currently authorizing, types: `TESTING` `LIVE`
+
+```javascript
+const authorityRes = await appBridge.getMerchantAuthorities();
 ```

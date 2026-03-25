@@ -16,10 +16,10 @@ export var getMerchantAuthorities = {
                     return;
                 }
                 resolve({
-                    merchant_id: data.authority.merchant_id,
+                    merchantId: data.authority.merchantId,
                     authorized: data.authority.authorized,
                     scopes: data.authority.scopes,
-                    version_type: data.authority.version_type
+                    versionType: data.authority.versionType
                 });
             })
                 .catch(function (err) {
