@@ -1,6 +1,6 @@
 import { AppBridgeEventData } from './app-bridge-event';
 import { ChildHandshake } from '../app-bridge/child-handshake';
-export declare interface AppBridgeFeature {
+export declare interface AppBridgeFeature<T = any> {
     /**
      * unique feature name
      */
@@ -14,7 +14,7 @@ export declare interface AppBridgeFeature {
      * @param handshake communication channel to AdminSDK
      * @param params data passed from user input
      */
-    handler?: (handshake: ChildHandshake, params?: any) => any;
+    handler?: (handshake: ChildHandshake, params?: T) => any;
     /**
      * Handle data received from AdminSDK
      * @param data

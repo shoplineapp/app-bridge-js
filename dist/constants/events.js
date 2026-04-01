@@ -13,4 +13,5 @@ export var Events = {
     ChangePageTitle: 'app-bridge:change-page-title',
     RouteChangeRetry: 'app-bridge:route-change-retry',
     RouteChangeIntercept: 'app-bridge:route-change-intercept',
+    GetMerchantAuthorities: 'app-bridge:get-merchant-authorities'
 };

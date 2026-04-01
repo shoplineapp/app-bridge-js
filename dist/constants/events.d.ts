@@ -13,4 +13,5 @@ export declare const Events: {
     ChangePageTitle: string;
     RouteChangeRetry: string;
     RouteChangeIntercept: string;
+    GetMerchantAuthorities: string;
 };

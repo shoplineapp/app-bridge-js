@@ -50,6 +50,7 @@ import { routeChanged as routeChangedFeature } from '../features/route-changed/a
 import { routeChangeRetry as routeChangeRetryFeature } from '../features/route-change-retry/app-bridge-feature';
 import { CallbackEvents } from '../constants/callback-events';
 import { routeChangeIntercept as routeChangeInterceptFeature } from '../features/route-change-intercept/app-bridge-feature';
+import { getMerchantAuthorities as getMerchantAuthoritiesFeature } from '../features/get-merchant-authories/app-bridge-feature';
 var init = function (options) { return __awaiter(void 0, void 0, void 0, function () {
     var handshake;
     return __generator(this, function (_a) {
@@ -69,6 +70,7 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                 handshake.addFeature(routeChangedFeature);
                 handshake.addFeature(routeChangeRetryFeature);
                 handshake.addFeature(routeChangeInterceptFeature);
+                handshake.addFeature(getMerchantAuthoritiesFeature);
                 return [4 /*yield*/, handshake.init()];
             case 1:
                 _a.sent();
@@ -91,6 +93,9 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                         }); },
                         redirect: function (url) {
                             handshake.handle(redirectFeature.name, { url: url });
+                        },
+                        redirectAdminPage: function (page) {
+                            handshake.handle(redirectFeature.name, { admin_page: page });
                         },
                         goBack: function () {
                             handshake.handle(goBackFeature.name);
@@ -128,14 +133,21 @@ var init = function (options) { return __awaiter(void 0, void 0, void 0, functio
                             handshake.handle(routeChangeInterceptFeature.name, { intercept: true });
                             var stopInterception = function () {
                                 // Notify admin to stop intercepting route change
-                                handshake.handle(routeChangeInterceptFeature.name, { intercept: false });
+                                handshake.handle(routeChangeInterceptFeature.name, {
+                                    intercept: false
+                                });
                                 eventHub.removeEventListener(CallbackEvents.RouteChanged, cb);
                             };
                             return stopInterception;
                         },
                         retryRouteChange: function () {
                             handshake.handle(routeChangeRetryFeature.name);
-                        }
+                        },
+                        getMerchantAuthorities: function () { return __awaiter(void 0, void 0, void 0, function () {
+                            return __generator(this, function (_a) {
+                                return [2 /*return*/, handshake.handle(getMerchantAuthoritiesFeature.name)];
+                            });
+                        }); }
                     }];
         }
     });

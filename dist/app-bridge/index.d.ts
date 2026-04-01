@@ -1,6 +1,8 @@
-declare interface AppBridgeClient {
+import { AppAuthority } from '../types/resolver-response';
+export declare interface AppBridgeClient {
     getSessionToken(): Promise<string>;
     redirect(url: string): void;
+    redirectAdminPage(page: string): void;
     goBack(): void;
     oauth(redirectUrl: string, scope: string): void;
     onLanguageChanged(handler: (language: string) => void): Function;
@@ -11,6 +13,7 @@ declare interface AppBridgeClient {
     changePageTitle(title: string): void;
     interceptRouteChange(handler: (from: string, to: string) => void): Function;
     retryRouteChange(): void;
+    getMerchantAuthorities(): Promise<AppAuthority>;
 }
 export declare const AppBridge: {
     init: (options: {
@@ -18,4 +21,3 @@ export declare const AppBridge: {
         authUrl: string;
     }) => Promise<AppBridgeClient>;
 };
-export {};
